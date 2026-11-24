@@ -1,6 +1,6 @@
 # GG Empowers
 
-A responsive Astro + TypeScript static website. No paid integrations, application server, UI framework, or client-side JavaScript. Fonts load from Google Fonts (free); the layout has local serif/sans-serif fallbacks if fonts are unavailable. No business copy or photography has been supplied, so bracketed content and image panels are explicitly marked placeholders.
+A responsive Astro + TypeScript static website. No paid integrations, application server, UI framework, or UI dependencies. A small local script handles background-video playback and reduced-motion preferences. Fonts load from Google Fonts (free); the layout has local serif/sans-serif fallbacks if fonts are unavailable. No business copy or photography has been supplied, so bracketed content and image panels are explicitly marked placeholders.
 
 ## Run locally
 
@@ -35,7 +35,7 @@ Create `public/images/` and add your own optimized WebP/AVIF/JPEG photos. Set `h
 Media folders are ready:
 
 - `public/images/`: optimized images for the website, served at `/images/filename.webp`.
-- `public/videos/`: compressed website videos, served at `/videos/filename.mp4`. Video rendering has not been added yet.
+- `public/videos/`: compressed website videos, served at `/videos/filename.mp4`. The hero uses `hero-background.mp4`, configured in `src/data/site.ts`.
 - `source-media/images/` and `source-media/videos/`: original source files. These folders are ignored by Git and excluded from the static build; back them up separately.
 
 Everything in `public/` is included in a deployment. Cloudflare Pages limits individual assets to 25 MiB; compress or split larger videos before using them here. Provide a poster image and captions for video with speech when adding a video player.
@@ -78,3 +78,9 @@ Use the free Pages plan and GitHub's standard repository integration; this proje
 ## Before launch
 
 Replace every bracketed placeholder, add your own images and verified contact links, and remove the draft banner. Obtain permission for testimonials before adding them. Replace the placeholder meta description and remove `noindex, nofollow` in `src/pages/index.astro` only when the content is ready for search engines. Add a canonical URL when your production domain is connected. Review keyboard navigation, text zoom, phone/tablet/desktop layouts, and your final image alt text. No analytics, cookies, tracking scripts, or form processing are included.
+
+## Background video and photo gallery
+
+The supplied 23-second video is compressed to an H.264 MP4 with no audio and fast-start playback. Its original MOV is preserved in `source-media/videos/`, outside deployment and Git. Do not move the large original back into `public/`: Pages has a 25 MiB per-file limit. The hero has a still-image poster, a play/pause button, and does not automatically load/play the video when reduced motion is preferred. If autoplay is blocked or JavaScript is unavailable, the poster remains visible.
+
+Update `backgroundVideo` and `offeringImages` in `src/data/site.ts`, and the manually maintained gallery in `src/data/gallery.ts`. Gallery photos do not sync with Instagram; the profile link opens @ggempowers. Original supplied photos remain alongside optimized WebP copies.

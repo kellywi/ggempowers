@@ -1,6 +1,7 @@
 // All bracketed text is a placeholder, not approved business copy.
 export const site = {
   name: 'GG Empowers',
+  backgroundVideo: { src: '/videos/hero-background.mp4', poster: '/images/hero-video-poster.webp' },
   logo: { src: '/images/gg-empowers-logo.webp', alt: 'GG Empowers' },
   description: '[Add a short description of GG Empowers, who you serve, and how you help.]',
   hero: {
@@ -21,16 +22,24 @@ export const site = {
     alt: 'Portrait of a woman with face glitter beside bright pink fabric.',
   },
   aboutImage: {
-    src: '/images/DSCF2199-1200.webp',
-    srcSet: '/images/DSCF2199-600.webp 600w, /images/DSCF2199-1200.webp 1200w',
-    alt: 'Outdoor portrait of a woman with long wavy hair and face glitter in front of stone steps.',
+    src: '/images/DSCF6693-1200.webp',
+    srcSet: '/images/DSCF6693-600.webp 600w, /images/DSCF6693-1200.webp 1200w',
+    alt: 'Smiling woman with iridescent gems in her hair beside a carved wooden railing.',
   },
+  offeringImages: [
+    { src: '/images/DSCF1506-1200.webp', alt: 'Woman seated behind a collection of singing bowls.' },
+    { src: '/images/image-1200.webp', alt: 'Woman moving with her hands raised outdoors.' },
+    { src: '/images/DSCF4981-1200.webp', alt: 'Portrait framed by palm leaves.' },
+  ],
   offerings: [
     { title: '[Offering name]', description: '[Describe this offering, who it is for, and what to expect.]', cta: 'Ask about this offering', href: '#contact' },
     { title: '[Offering name]', description: '[Describe another way to work with GG Empowers.]', cta: 'Ask about this offering', href: '#contact' },
     { title: '[Offering name]', description: '[Describe a third offering, or remove this entry if it is not needed.]', cta: 'Ask about this offering', href: '#contact' },
   ],
   contact: { heading: 'Your next chapter starts with a conversation.', body: '[Add a welcoming invitation to contact GG Empowers.]', email: 'giselle@ggempowers.com' },
-  // Example shape: { label: 'Instagram', href: 'https://www.instagram.com/YOUR_HANDLE/' }
-  socials: [] as { label: string; href: string }[],
+  socials: [
+    { label: 'Instagram', href: 'https://www.instagram.com/ggempowers/' },
+    { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=100095444342472' },
+    { label: 'YouTube', href: 'https://www.youtube.com/shorts/zwgYZY3cpkw' },
+  ],
 };

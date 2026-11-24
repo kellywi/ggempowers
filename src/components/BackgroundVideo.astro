@@ -1,0 +1,26 @@
+---
+import { site } from '../data/site';
+---
+<div class="hero-backdrop" style={`background-image: url('${site.backgroundVideo.poster}')`}>
+  <video id="hero-video" muted loop playsinline preload="none" poster={site.backgroundVideo.poster} aria-hidden="true" tabindex="-1" data-src={site.backgroundVideo.src}></video>
+</div>
+<button class="video-toggle" type="button" aria-controls="hero-video" hidden>Play background video</button>
+<script>
+  const video = document.querySelector<HTMLVideoElement>('#hero-video');
+  const button = document.querySelector<HTMLButtonElement>('.video-toggle');
+  if (video && button) {
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updateLabel = () => { button.textContent = video.paused ? 'Play background video' : 'Pause background video'; };
+    const play = async () => {
+      video.src ||= video.dataset.src!;
+      try { await video.play(); } catch { /* The poster remains if autoplay is blocked. */ }
+      updateLabel();
+    };
+    button.hidden = false;
+    button.addEventListener('click', () => { if (video.paused) void play(); else video.pause(); });
+    video.addEventListener('play', updateLabel);
+    video.addEventListener('pause', updateLabel);
+    preference.addEventListener('change', () => { if (preference.matches) video.pause(); });
+    if (!preference.matches) void play();
+  }
+</script>

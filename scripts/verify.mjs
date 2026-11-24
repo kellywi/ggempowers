@@ -11,7 +11,8 @@ for (const match of html.matchAll(/\bhref="#([^"]+)"/g)) {
 for (const id of ['main', 'about', 'offerings', 'experiences', 'testimonials', 'contact']) {
   assert.ok(ids.includes(id), `Missing section: ${id}`);
 }
-assert.ok(!/<script\b/i.test(html), 'This static site should ship no JavaScript');
+assert.ok(html.includes('id="hero-video"'), 'Include the background video');
+assert.ok(html.includes('Pause background video') || html.includes('Play background video'), 'Provide a video playback control');
 assert.ok(html.includes('noindex, nofollow'), 'Keep the draft out of search engines');
 assert.ok(html.includes('No testimonials have been supplied.'), 'Show the honest testimonial empty state');
-console.log('Static output verified: section links, unique IDs, draft metadata, empty state, and zero scripts.');
+console.log('Static output verified: section links, unique IDs, draft metadata, empty state, and video control.');

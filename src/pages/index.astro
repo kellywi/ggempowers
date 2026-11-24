@@ -1,4 +1,7 @@
 ---
+import SocialLinks from '../components/SocialLinks.astro';
+import BackgroundVideo from '../components/BackgroundVideo.astro';
+import { gallery } from '../data/gallery';
 import { site } from '../data/site';
 import { events } from '../data/events';
 import { testimonials } from '../data/testimonials';
@@ -14,7 +17,7 @@ const navigation = [ ['About', 'about'], ['Offerings', 'offerings'], ['Experienc
     <meta name="description" content={site.description} />
     <!-- Keep this draft out of search results until content is approved. -->
     <meta name="robots" content="noindex, nofollow" />
-    <meta name="theme-color" content="#39263b" />
+    <meta name="theme-color" content="#30271e" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -30,17 +33,15 @@ const navigation = [ ['About', 'about'], ['Offerings', 'offerings'], ['Experienc
       </nav>
     </header>
     <main id="main">
-      <section class="hero wrap" aria-labelledby="hero-title">
-        <div class="hero-copy">
+      <section class="hero video-hero" aria-labelledby="hero-title">
+        <BackgroundVideo />
+        <div class="hero-copy wrap">
           <p class="eyebrow">GG Empowers</p>
           <h1 id="hero-title">{site.hero.heading}</h1>
           <p class="intro">{site.hero.body}</p>
           <div class="actions"><a class="button" href={site.primaryCta.href}>{site.primaryCta.label}</a><a class="text-link" href="#about">About GG Empowers</a></div>
         </div>
-        <figure class="hero-visual">
-          {site.heroImage.src ? <img src={site.heroImage.src} srcset={site.heroImage.srcSet} sizes="(max-width: 650px) 420px, 45vw" alt={site.heroImage.alt} width="1200" height="800" fetchpriority="high" /> : <div class="image-placeholder"><span class="placeholder-mark" aria-hidden="true">GG</span><span>[Your hero photograph]</span><small>Add your own image</small></div>}
-          {!site.heroImage.src && <figcaption>Image placeholder · Your photography belongs here</figcaption>}
-        </figure>
+
       </section>
       <section id="about" class="about wrap section-space" aria-labelledby="about-title">
         <figure class="about-visual">
@@ -50,15 +51,21 @@ const navigation = [ ['About', 'about'], ['Offerings', 'offerings'], ['Experienc
       </section>
       <section id="offerings" class="offerings section-space" aria-labelledby="offerings-title">
         <div class="wrap"><div class="section-heading"><p class="eyebrow">Offerings</p><h2 id="offerings-title">Explore your path to empowerment.</h2><p>[Introduce your offerings and help visitors find the right fit.]</p></div>
-          <div class="offering-grid">{site.offerings.map((offering) => <article class="offering-card"><span class="flower" aria-hidden="true">✳</span><h3>{offering.title}</h3><p>{offering.description}</p><a class="text-link" href={offering.href}>{offering.cta}</a></article>)}</div>
+          <div class="offering-grid">{site.offerings.map((offering, index) => <article class="offering-card"><img class="offering-image" src={site.offeringImages[index].src} alt={site.offeringImages[index].alt} width="1200" height="800" loading="lazy" decoding="async" /><h3>{offering.title}</h3><p>{offering.description}</p><a class="text-link" href={offering.href}>{offering.cta}</a></article>)}</div>
         </div>
       </section>
       <section id="experiences" class="wrap section-space" aria-labelledby="experiences-title">
         <div class="split-heading"><div><p class="eyebrow">Upcoming experiences</p><h2 id="experiences-title">Connect. Grow. Step into your power.</h2></div><p>[Introduce your upcoming events, gatherings, or experiences.]</p></div>
+        <img class="experience-image" src="/images/DSCF0884-1200.webp" alt="Portrait at an outdoor gathering at night." width="1200" height="800" loading="lazy" decoding="async" />
         <div class="events">{events.length ? events.map((event) => <article class="event"><div class="event-date"><span class="eyebrow">Date & time</span><p>{event.dateLabel}</p></div><div><p class="event-location">{event.location}</p><h3>{event.title}</h3><p>{event.description}</p></div>{event.href ? <a class="button outline" href={event.href}>{event.linkLabel || 'View experience'}</a> : <span class="pending">[Registration link to be added]</span>}</article>) : <p class="empty-state">[Add confirmed upcoming experiences in src/data/events.ts.]</p>}</div>
       </section>
       <section id="testimonials" class="testimonials section-space" aria-labelledby="testimonials-title"><div class="wrap narrow"><p class="eyebrow">Testimonials & stories</p><h2 id="testimonials-title">Every voice holds power.</h2>{testimonials.length ? testimonials.map((item) => <figure class="quote"><blockquote><p>{item.quote}</p></blockquote><figcaption>{item.attribution}{item.context && <span> · {item.context}</span>}</figcaption></figure>) : <div class="quote-placeholder"><span aria-hidden="true">“</span><p>[Your approved testimonial or case study will appear here.]</p><small>No testimonials have been supplied.</small></div>}</div></section>
-      <section id="contact" class="contact section-space" aria-labelledby="contact-title"><div class="wrap contact-inner"><div><p class="eyebrow">Connect with GG Empowers</p><h2 id="contact-title">{site.contact.heading}</h2><p>{site.contact.body}</p></div><div class="contact-actions">{site.contact.email ? <a class="button light" href={`mailto:${site.contact.email}`}>Email GG Empowers</a> : <p class="contact-placeholder">[Your contact email goes here]</p>}{site.socials.length ? <nav aria-label="Social links">{site.socials.map((social) => <a href={social.href}>{social.label}</a>)}</nav> : <p class="social-placeholder">[Your social links go here]</p>}</div></div></section>
+      <section class="wrap section-space" aria-labelledby="gallery-title">
+        <div class="section-heading"><p class="eyebrow">GG Empowers</p><h2 id="gallery-title">Moments of expression.</h2></div>
+        <div class="photo-gallery">{gallery.map((photo) => <img src={photo.src} alt={photo.alt} width="1200" height="800" loading="lazy" decoding="async" />)}</div>
+        <p class="gallery-link"><a class="text-link" href="https://www.instagram.com/ggempowers/">Find @ggempowers on Instagram</a></p>
+      </section>
+      <section id="contact" class="contact section-space" aria-labelledby="contact-title"><div class="wrap contact-inner"><div><p class="eyebrow">Connect with GG Empowers</p><h2 id="contact-title">{site.contact.heading}</h2><p>{site.contact.body}</p></div><div class="contact-actions">{site.contact.email ? <a class="button light" href={`mailto:${site.contact.email}`}>Email GG Empowers</a> : <p class="contact-placeholder">[Your contact email goes here]</p>}<SocialLinks /></div></div></section>
     </main>
     <footer class="wrap site-footer"><a class="brand-logo" href="#" aria-label="GG Empowers home"><img src={site.logo.src} alt={site.logo.alt} width="600" height="400" loading="lazy" /></a><p>© {new Date().getFullYear()} GG Empowers</p><a href="#main">Back to top</a></footer>
   </body>
