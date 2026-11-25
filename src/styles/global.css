@@ -653,7 +653,21 @@ a:hover {
   object-fit: cover;
 }
 .gallery-link { text-align: center; margin-top: 2rem; }
+.dance-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  max-width: 50rem;
+  margin: auto;
+}
+.dance-details dt { font-weight: 600; margin-bottom: .5rem; }
+.dance-details dd { margin: 0; line-height: 1.8; color: var(--muted); }
+.dance-faq { max-width: 850px; }
+.dance-faq details { border-bottom: 1px solid var(--line); padding-block: 1.5rem; }
+.dance-faq summary { cursor: pointer; font-weight: 500; line-height: 1.6; }
+.dance-faq details p { margin: 1rem 0 0; color: var(--muted); }
 @media(max-width:650px) {
+  .dance-details { grid-template-columns: 1fr; }
   .hero.video-hero { min-height: 36rem; padding-block: 4rem 6rem; }
   .photo-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
   .experience-image { aspect-ratio: 4 / 3; }

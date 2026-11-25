@@ -33,7 +33,7 @@ export const site = {
   ],
   offerings: [
     { title: '[Offering name]', description: '[Describe this offering, who it is for, and what to expect.]', cta: 'Ask about this offering', href: '#contact' },
-    { title: '[Offering name]', description: '[Describe another way to work with GG Empowers.]', cta: 'Ask about this offering', href: '#contact' },
+    { title: 'Somatic Dance', description: '[Describe your Somatic Dance offering.]', cta: 'Explore Somatic Dance', href: '/somatic-dance/' },
     { title: '[Offering name]', description: '[Describe a third offering, or remove this entry if it is not needed.]', cta: 'Ask about this offering', href: '#contact' },
   ],
   contact: { heading: 'Your next chapter starts with a conversation.', body: '[Add a welcoming invitation to contact GG Empowers.]', email: 'giselle@ggempowers.com' },

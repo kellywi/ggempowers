@@ -24,6 +24,8 @@ npm run preview
 
 ## Edit content
 
+The Somatic Dance landing page is at `/somatic-dance/` (`src/pages/somatic-dance.astro`). Edit its copy, session details, FAQs, image, and enquiry/booking link in `src/data/somatic-dance.ts`. Missing business information stays bracketed until confirmed; the CTA currently opens an email enquiry, not an event registration. Both pages share their header, fonts, metadata defaults, draft banner, and footer through `src/layouts/SiteLayout.astro`. Search indexing remains disabled in that layout while the pages contain draft content.
+
 - `src/data/site.ts`: brand text, hero, about, offerings, CTA labels/destinations, email, social links, and image paths.
 - `src/data/events.ts`: event title, display date/time/time zone, location, description, and optional registration URL. Set `events` to `[]` if you have no confirmed events.
 - `src/data/testimonials.ts`: approved quotes and attribution. Empty by default; no invented endorsements.

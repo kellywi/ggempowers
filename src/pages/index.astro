@@ -5,33 +5,9 @@ import { gallery } from '../data/gallery';
 import { site } from '../data/site';
 import { events } from '../data/events';
 import { testimonials } from '../data/testimonials';
-import '../styles/global.css';
-const navigation = [ ['About', 'about'], ['Offerings', 'offerings'], ['Experiences', 'experiences'], ['Kind words', 'testimonials'] ];
+import SiteLayout from '../layouts/SiteLayout.astro';
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{site.name}</title>
-    <meta name="description" content={site.description} />
-    <!-- Keep this draft out of search results until content is approved. -->
-    <meta name="robots" content="noindex, nofollow" />
-    <meta name="theme-color" content="#30271e" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  </head>
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <div class="draft-note">Design draft · Bracketed text and image spaces are placeholders.</div>
-    <header class="site-header wrap">
-      <a class="brand-logo" href="#" aria-label="GG Empowers home"><img src={site.logo.src} alt={site.logo.alt} width="600" height="400" /></a>
-      <nav aria-label="Main navigation">
-        {navigation.map(([label, id]) => <a href={`#${id}`}>{label}</a>)}
-        <a class="button small" href={site.secondaryCta.href}>{site.secondaryCta.label}</a>
-      </nav>
-    </header>
+<SiteLayout>
     <main id="main">
       <section class="hero video-hero" aria-labelledby="hero-title">
         <BackgroundVideo />
@@ -67,6 +43,4 @@ const navigation = [ ['About', 'about'], ['Offerings', 'offerings'], ['Experienc
       </section>
       <section id="contact" class="contact section-space" aria-labelledby="contact-title"><div class="wrap contact-inner"><div><p class="eyebrow">Connect with GG Empowers</p><h2 id="contact-title">{site.contact.heading}</h2><p>{site.contact.body}</p></div><div class="contact-actions">{site.contact.email ? <a class="button light" href={`mailto:${site.contact.email}`}>Email GG Empowers</a> : <p class="contact-placeholder">[Your contact email goes here]</p>}<SocialLinks /></div></div></section>
     </main>
-    <footer class="wrap site-footer"><a class="brand-logo" href="#" aria-label="GG Empowers home"><img src={site.logo.src} alt={site.logo.alt} width="600" height="400" loading="lazy" /></a><p>© {new Date().getFullYear()} GG Empowers</p><a href="#main">Back to top</a></footer>
-  </body>
-</html>
+</SiteLayout>

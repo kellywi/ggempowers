@@ -15,4 +15,13 @@ assert.ok(html.includes('id="hero-video"'), 'Include the background video');
 assert.ok(html.includes('Pause background video') || html.includes('Play background video'), 'Provide a video playback control');
 assert.ok(html.includes('noindex, nofollow'), 'Keep the draft out of search engines');
 assert.ok(html.includes('No testimonials have been supplied.'), 'Show the honest testimonial empty state');
-console.log('Static output verified: section links, unique IDs, draft metadata, empty state, and video control.');
+const dance = readFileSync(new URL('../dist/somatic-dance/index.html', import.meta.url), 'utf8');
+assert.ok(html.includes('href="/somatic-dance/"'), 'Link to Somatic Dance from the homepage');
+assert.ok(dance.includes('Somatic Dance | GG Empowers'), 'Give the dance page its own title');
+const danceIds = [...dance.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
+assert.equal(new Set(danceIds).size, danceIds.length, 'Dance page IDs must be unique');
+for (const match of dance.matchAll(/\bhref="#([^"]+)"/g)) {
+  assert.ok(danceIds.includes(match[1]), `Missing dance page anchor: ${match[1]}`);
+}
+assert.ok(dance.includes('mailto:giselle@ggempowers.com?subject=Somatic%20Dance%20enquiry'), 'Provide a real enquiry destination');
+console.log('Both static pages verified: navigation, unique IDs, titles, draft content, video control, and enquiry link.');
